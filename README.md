@@ -1,14 +1,13 @@
 # flutter_expandable
 
-A new Flutter package project.
+This is a package that allows widget expansion no matter where the trigger and the expandable widget are in the UI.
+This package was born when a ExpansionTile was not enough for our requeriments.
 
 ## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Import the package to _pubspec.yaml_ file, and you're ready to go.
+Just wrap the widgets that will trigger expansion with _ExpanderWidget_ (they should be given as _triggerWidgets_ property) and provide an _AnimationController_.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Then, wrap the widget that will be expanded with _ExpandableWidget_ and provide the same controller that you provided to the Expander, provide a height and you're done! Once you tap the expander, the expandable will animate vertically or horizontally (depending on the properties you've set).
+
+Check out our _example_ for more information
