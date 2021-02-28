@@ -25,36 +25,34 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Material App Bar'),
+          title: Text('Expander example'),
         ),
         body: Column(
           children: [
             ExpanderWidget(
               rotateArrow: true,
-              showRotatingArrow: false,
               rotatingArrowSize: 40,
               arrowRotationDuration: const Duration(milliseconds: 300),
               triggerWidgets: [
                 Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.red,
+                  width: 300,
+                  child: Text(
+                    'This is the widget that will trigger the expansion of the other widgets',
+                    maxLines: 2,
+                  ),
                 )
               ],
               controller: controller,
             ),
+            SizedBox(
+              height: 30,
+            ),
             ExpandableWidget(
               height: 20,
               controller: controller,
-              child: Text('asdasdasdsa'),
-            ),
-            Container(
-              width: 100,
-              height: 50,
-              color: Colors.purple,
+              child: Text('This should only expand vertically'),
             ),
             ExpandableWidget(
               height: 30,
@@ -62,7 +60,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               animateHeight: true,
               width: 200,
               controller: controller,
-              child: Text('asdasdasdasd'),
+              child: Text('This should expand vertical and horizontally'),
             ),
           ],
         ),
