@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_expandable/expandable_widget.dart';
-import 'package:flutter_expandable/expander_widget.dart';
+import 'package:flutter_expandable/expandable.dart';
+import 'package:flutter_expandable/expander.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         ),
         body: Column(
           children: [
-            ExpanderWidget(
+            Expander(
               rotateArrow: true,
               rotatingArrowSize: 40,
               arrowRotationDuration: const Duration(milliseconds: 300),
@@ -49,18 +49,52 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             SizedBox(
               height: 30,
             ),
-            ExpandableWidget(
-              height: 20,
+            Expandable(
+              height: 100,
               controller: controller,
-              child: Text('This should only expand vertically'),
+              duration: const Duration(seconds: 1),
+              child: Container(
+                height: 100,
+                color: Colors.green,
+                child: Text(
+                  'This should only expand vertically',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
-            ExpandableWidget(
-              height: 30,
+            Expandable(
+              height: 100,
+              animateWidth: true,
+              animateHeight: false,
+              width: 200,
+              duration: const Duration(seconds: 3),
+              controller: controller,
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.purple,
+                child: Text(
+                  'This should expand horizontally',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            Expandable(
+              height: 150,
               animateWidth: true,
               animateHeight: true,
               width: 200,
+              duration: const Duration(seconds: 2),
               controller: controller,
-              child: Text('This should expand vertical and horizontally'),
+              child: Container(
+                width: 100,
+                height: 100,
+                color: Colors.red,
+                child: Text(
+                  'This should expand vertical and horizontally',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),

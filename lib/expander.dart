@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ExpanderWidget extends StatefulWidget {
-  const ExpanderWidget({
+class Expander extends StatefulWidget {
+  const Expander({
     Key key,
     @required this.triggerWidgets,
     @required this.controller,
@@ -25,10 +25,10 @@ class ExpanderWidget extends StatefulWidget {
   final Color rotatingArrowColor;
   final double rotatingArrowSize;
   @override
-  _ExpanderWidgetState createState() => _ExpanderWidgetState();
+  _ExpanderState createState() => _ExpanderState();
 }
 
-class _ExpanderWidgetState extends State<ExpanderWidget>
+class _ExpanderState extends State<Expander>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 

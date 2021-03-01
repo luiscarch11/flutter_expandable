@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ExpandableWidget extends StatefulWidget {
-  const ExpandableWidget({
+class Expandable extends StatefulWidget {
+  const Expandable({
     Key key,
     @required this.controller,
     @required this.child,
@@ -27,10 +27,10 @@ class ExpandableWidget extends StatefulWidget {
   final Widget child;
 
   @override
-  _ExpandableWidgetState createState() => _ExpandableWidgetState();
+  _ExpandableState createState() => _ExpandableState();
 }
 
-class _ExpandableWidgetState extends State<ExpandableWidget>
+class _ExpandableState extends State<Expandable>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> tween;
