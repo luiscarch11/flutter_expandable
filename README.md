@@ -16,21 +16,21 @@ Then, wrap the widget that will be expanded with \_Expandable and provide the sa
 
 Every _Expandable_ widget which has the same controller as the _Expander_ will perform the expansion animation.
 
-```
+```dart
 Column(
-    [
+    children:[
         Expander(
             rotateArrow: true,
             rotatingArrowSize: 40,
             arrowRotationDuration: const Duration(milliseconds: 300),
             triggerWidgets: [
-            Container(
+                Container(
                 width: 300,
                 child: Text(
-                'This is the widget that will trigger the expansion of the other widgets',
-                maxLines: 2,
+                    'This is the widget that will trigger the expansion of the other ets',
+                    maxLines: 2,
                 ),
-            )
+                )
             ],
             controller: controller,
         ),
@@ -39,12 +39,12 @@ Column(
             controller: controller,//controller is mandatory
             duration: const Duration(seconds: 1),
             child: Container(//this widget will expand vertically (default)
-            height: 100,
-            color: Colors.green,
-            child: Text(
-                'This should only expand vertically',
-                style: TextStyle(color: Colors.white),
-            ),
+                height: 100,
+                color: Colors.green,
+                child: Text(
+                    'This should only expand vertically',
+                    style: TextStyle(color: Colors.white),
+                ),
             ),
         ),
     ]
