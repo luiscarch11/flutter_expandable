@@ -9,3 +9,8 @@
 ## [0.0.1+2] - 2021-02-28.
 
 - Improved readme.md
+
+## [0.0.1+3] - 2021-02-28.
+
+- Changed widget name from ExpanderWidget to Expander and ExpandableWidget to Expandable
+- Improved documentation and provided example gif and code
