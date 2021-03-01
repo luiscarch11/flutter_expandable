@@ -14,3 +14,7 @@
 
 - Changed widget name from ExpanderWidget to Expander and ExpandableWidget to Expandable
 - Improved documentation and provided example gif and code
+
+## [0.0.1+4] - 2021-02-28.
+
+- Improved documentation
