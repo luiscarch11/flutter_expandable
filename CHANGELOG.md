@@ -18,3 +18,8 @@
 ## [0.0.1+4] - 2021-02-28.
 
 - Improved documentation
+
+## [0.0.1+5] - 2021-03-21.
+
+- Added builder constructor to Expander to be able to use the arrow for comfortably
+- Improved documentation for arguments
