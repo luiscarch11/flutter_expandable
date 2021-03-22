@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               triggerWidgets: [
                 Container(
                   width: 300,
+                  color: Colors.red,
                   child: Text(
                     'This is the widget that will trigger the expansion of the other widgets',
                     maxLines: 2,
@@ -50,11 +51,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               height: 30,
             ),
             Expandable(
-              height: 100,
+              height: 200,
               controller: controller,
               duration: const Duration(seconds: 1),
               child: Container(
-                height: 100,
+                height: 250,
                 color: Colors.green,
                 child: Text(
                   'This should only expand vertically',
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             Expandable(
               height: 100,
               animateWidth: true,
-              animateHeight: false,
+              animateHeight: true,
               width: 200,
               duration: const Duration(seconds: 3),
               controller: controller,
@@ -96,6 +97,27 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
+            Expander.builder(
+              controller: controller,
+              rotatingArrowColor: Colors.white,
+              rotatingArrowSize: 40,
+              builder: (context, arrow) => Container(
+                color: Colors.red,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 100,
+                      child: Text(
+                        'This is the widget that will trigger the expansion of the other widgets',
+                        maxLines: 2,
+                      ),
+                    ),
+                    arrow,
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
