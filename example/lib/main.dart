@@ -10,7 +10,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  AnimationController controller;
+  late AnimationController controller;
   @override
   void initState() {
     controller = AnimationController(
@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   child: Text(
                     'This is the widget that will trigger the expansion of the other widgets',
                     maxLines: 2,
+                    style: TextStyle(color: Colors.white),
                   ),
                 )
               ],
@@ -66,7 +67,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
             Expandable(
               height: 100,
               animateWidth: true,
-              animateHeight: true,
+              animateHeight: false,
               width: 200,
               duration: const Duration(seconds: 3),
               controller: controller,
@@ -107,10 +108,11 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width: 100,
+                      width: 300,
                       child: Text(
                         'This is the widget that will trigger the expansion of the other widgets',
                         maxLines: 2,
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     arrow,

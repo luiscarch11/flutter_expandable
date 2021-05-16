@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class Expander extends StatefulWidget {
   const Expander._({
-    Key key,
+    Key? key,
     this.triggerWidgets,
-    @required this.controller,
+    required this.controller,
     this.onHide,
     this.onShow,
     this.arrowRotationDuration,
@@ -13,41 +13,58 @@ class Expander extends StatefulWidget {
     this.rotatingArrowColor = Colors.green,
     this.rotatingArrowSize = 20,
     this.builder,
-  })  : assert(controller != null),
-        assert(builder == null || triggerWidgets == null),
+  })  : assert(builder == null || triggerWidgets == null),
         super(key: key);
-  final VoidCallback onHide;
-  final VoidCallback onShow;
-  final List<Widget> triggerWidgets;
-  final Duration arrowRotationDuration;
+
+  final VoidCallback? onHide;
+
+  final VoidCallback? onShow;
+
+  final List<Widget>? triggerWidgets;
+
+  final Duration? arrowRotationDuration;
+
   final AnimationController controller;
+
   final bool showRotatingArrow;
+
   final bool rotateArrow;
+
   final Color rotatingArrowColor;
+
   final double rotatingArrowSize;
-  final Widget Function(BuildContext context, Widget arrow) builder;
+
+  final Widget Function(BuildContext context, Widget arrow)? builder;
+
+  /// [controller] Controls which expander triggers which expandable. Must not be null and should be the same as its Expandable's controller
+  ///
+  /// [triggerWidgets] Widgets that will trigger the expansion animation
+  ///
+
+  /// [onHide] This callback will be callend every time the animation controller is reversed (the expanded widget hides)
+  ///
+  /// [onShow] This callback will be callend every time the animation controller is forwarded (the expanded widget shows)
+  ///
+  /// [arrowRotationDuration] How long will it take to the arrow to rotate
+  ///
+
+  /// [showRotatingArrow] Defaults to true
+  ///
+  /// [rotateArrow] Defaults to true
+  ///
+  /// [rotatingArrowColor] You may change the color of the rotating arrow
+  ///
+  /// [rotatingArrowSize] You may change the size of the rotating arrow
+  ///
   factory Expander({
-    //controls which expander triggers which expandable. Must not be null and should be the same as its Expandable's controller
-    @required AnimationController controller,
-    //Widgets that will trigger the expansion animation
-    @required List<Widget> triggerWidgets,
-    //This callback will be callend every time the animation controller is reversed (the expanded widget hides)
-
-    VoidCallback onHide,
-    //This callback will be callend every time the animation controller is forwarded (the expanded widget shows)
-
-    VoidCallback onShow,
-    //How long will it take to the arrow to rotate
-
-    Duration arrowRotationDuration,
-    //Defaults to true
-
+    required AnimationController controller,
+    required List<Widget> triggerWidgets,
+    VoidCallback? onHide,
+    VoidCallback? onShow,
+    Duration? arrowRotationDuration,
     bool showRotatingArrow = true,
-    //Defaults to true
     bool rotateArrow = true,
-    //You may change the color of the rotating arrow
     Color rotatingArrowColor = Colors.green,
-    //You may change the size of the rotating arrow
     double rotatingArrowSize = 20,
   }) {
     return Expander._(
@@ -63,26 +80,38 @@ class Expander extends StatefulWidget {
       builder: null,
     );
   }
-  //Provides a BuildContext and the rotating arrow so you can place it wherever you need to
+
+  /// Provides a BuildContext and the rotating arrow so you can place it wherever you need to
+  ///
+  ///
+  /// [controller] Controls which expander triggers which expandable. Must not be null and should be the same as its Expandable's controller
+  ///
+  /// [triggerWidgets] Widgets that will trigger the expansion animation
+  ///
+
+  /// [onHide] This callback will be callend every time the animation controller is reversed (the expanded widget hides)
+  ///
+  /// [onShow] This callback will be callend every time the animation controller is forwarded (the expanded widget shows)
+  ///
+  /// [arrowRotationDuration] How long will it take to the arrow to rotate
+  ///
+
+  /// [showRotatingArrow] Defaults to true
+  ///
+  /// [rotateArrow] Defaults to true
+  ///
+  /// [rotatingArrowColor] You may change the color of the rotating arrow
+  ///
+  /// [rotatingArrowSize] You may change the size of the rotating arrow
+  ///
   factory Expander.builder({
-//Widgets that will be showed as trigger
-    @required Widget Function(BuildContext context, Widget arrow) builder,
-    //controls which expander triggers which expandable. Must not be null and should be the same as its Expandable's controller
-    @required AnimationController controller,
-    //This callback will be callend every time the animation controller is reversed (the expanded widget hides)
-
-    VoidCallback onHide,
-//This callback will be callend every time the animation controller is forwarded (the expanded widget shows)
-    VoidCallback onShow,
-    //How long will it take to the arrow to rotate
-    Duration arrowRotationDuration,
-    //Defaults to true
-
+    required Widget Function(BuildContext context, Widget arrow) builder,
+    required AnimationController controller,
+    VoidCallback? onHide,
+    VoidCallback? onShow,
+    Duration? arrowRotationDuration,
     bool rotateArrow = true,
-    //You may change the color of the rotating arrow
     Color rotatingArrowColor = Colors.green,
-    //You may change the size of the rotating arrow
-
     double rotatingArrowSize = 20,
   }) {
     return Expander._(
@@ -102,7 +131,7 @@ class Expander extends StatefulWidget {
 
 class _ExpanderState extends State<Expander>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -126,11 +155,11 @@ class _ExpanderState extends State<Expander>
         if (widget.controller.status == AnimationStatus.completed ||
             widget.controller.status == AnimationStatus.forward) {
           widget.controller.reverse();
-          if (widget.onHide != null) widget.onHide();
+          if (widget.onHide != null) widget.onHide!();
           if (widget.rotateArrow) _controller.reverse();
         } else {
           if (widget.rotateArrow) _controller.forward();
-          if (widget.onShow != null) widget.onShow();
+          if (widget.onShow != null) widget.onShow!();
           widget.controller.forward();
         }
       },
@@ -138,7 +167,7 @@ class _ExpanderState extends State<Expander>
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ...widget.triggerWidgets,
+                ...widget.triggerWidgets ?? [Container()],
                 if (widget.showRotatingArrow)
                   RotationTransition(
                     turns: _controller,
@@ -150,7 +179,7 @@ class _ExpanderState extends State<Expander>
                   ),
               ],
             )
-          : widget.builder(
+          : widget.builder!(
               context,
               RotationTransition(
                 turns: _controller,
