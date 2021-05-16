@@ -23,3 +23,8 @@
 
 - Added builder constructor to Expander to be able to use the arrow for comfortably
 - Improved documentation for arguments
+
+## [0.0.1+5] - 2021-05-16.
+
+- Improved documentation
+- Added null safety support
